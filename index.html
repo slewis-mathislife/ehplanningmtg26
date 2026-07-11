@@ -57,7 +57,10 @@
     flex:0 0 100vw;
     height:100%;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:clamp(1.5rem,5vw,4rem);
+    text-align:center;
+    padding:clamp(1.5rem,5vw,4rem);
+    padding-bottom:clamp(6.5rem,12vh,8rem);
+    overflow-y:auto;
   }
 
   .eyebrow{
@@ -190,7 +193,7 @@
     position:fixed;bottom:0;left:0;right:0;z-index:50;
     display:flex;align-items:center;justify-content:space-between;
     padding:1.1rem clamp(1.2rem,4vw,2.6rem);
-    background:linear-gradient(0deg,var(--navy-deep) 20%,transparent);
+    background:linear-gradient(0deg,var(--navy-deep) 55%,rgba(8,16,38,.85) 80%,transparent);
   }
   .navbtn{
     display:inline-flex;align-items:center;gap:.7rem;background:none;border:none;cursor:pointer;
@@ -269,18 +272,24 @@ const FAMILIES = 16;
 
 const KID_NAMES = ["Alexandria","Ziya","Kennedy","Madison","Noah","Sasha","Elle","Dorian","James","Elijah","Antonio","Michael","Maya","Norah","Grayson","Sophia","Emerson"];
 
-const MOTHER_NAMES = ["Mother Tia","CP Jamilia","RS Stacie","Mother Jenelle","Mother Jennifer","Mother Tolaison","Mother Danielle","Mother Sharmaine","Mother Rose","Mother Renee","Mother Kenyanna","Mother Rabiyya","Mother India","Mother Jennifer W.","Mother Kimberly"];
+const MOTHER_NAMES = ["Mother Tia","CP Jamilia","RS Stacie","Mother Jenelle","Mother Jennifer","Mother Tolaison","Mother Danielle","Mother Sharmaine","Mother Rose","Mother Renee","Mother Kenyanna","Mother Rabiyya","Mother India","Mother Jennifer W.","Mother Kimberly","Mother Shaviece"];
+
+const CHECKLIST_URL = "jr-teens-requirements-checklist.html";
+const WORKBOOK_URL = "https://docs.google.com/spreadsheets/d/19R0Gil0VWE6B1nHYxMZTtMnz9W1Ne9SEUN-Pnsas-Ls/edit?gid=1513547711#gid=1513547711";
+const LINK_BTNS =
+  `<a class="m-link" href="${CHECKLIST_URL}" target="_blank" rel="noopener">Jr. Teens Checklist ↗</a>`+
+  `<a class="m-link" href="${WORKBOOK_URL}" target="_blank" rel="noopener">Program Workbook ↗</a>`;
 
 const MODULES = [
-  {m:"SEP",num:"Reel 01",title:"Pizza & Politics for Mid-Terms",desc:"Voter education, civic discussion, and pizza — teens explore the midterm landscape and how policy shapes their communities.",thrusts:[["Civic","c-civic"],["Education","c-education"],["Social","c-social"]],hosts:"Rose Registre · Tolaison Hooks"},
-  {m:"OCT",num:"Reel 02",title:"Entrepreneurship Workshop",desc:"Jr. teens brainstorm business ideas, learn startup basics, and explore where business meets technology.",thrusts:[["Education","c-education"],["Social","c-social"]],hosts:"Rabiyya Smith · Jennifer Williams"},
-  {m:"NOV",num:"Reel 03",title:"Federal Reserve + Side Hustle & Cybersecurity",desc:"Tour the Federal Reserve, then dive into side hustles, entrepreneurship, and a cybersecurity + AI workshop with guest speakers.",thrusts:[["Education","c-education"]],hosts:"Jenelle DeCoteau · Sharmaine Lewis",links:[["Jr. Teens Checklist","jr-teens-requirements-checklist.html"],["Program Workbook","https://docs.google.com/spreadsheets/d/19R0Gil0VWE6B1nHYxMZTtMnz9W1Ne9SEUN-Pnsas-Ls/edit?gid=1513547711#gid=1513547711"]]},
-  {m:"DEC",num:"Reel 04",title:"Preparing for High School + Holiday Dinner",desc:"A joint session with the Senior Teens — high school readiness panel, real-talk Q&A, and a festive holiday dinner.",thrusts:[["Education","c-education"],["Social","c-social"],["Recreational","c-recreational"]],hosts:"Stacie Church · Kimberly Wright"},
-  {m:"JAN",num:"Reel 05",title:"Cards, Culture & Conversation",desc:"Cultural card games and heritage conversations paired with a hands-on financial literacy game, Cash Flow for Kids.",thrusts:[["Cultural","c-cultural"],["Education","c-education"],["Recreational","c-recreational"]],hosts:"Tia Adams · India Sweetney"},
-  {m:"FEB",num:"Reel 06",title:"Church of Epiphany Service Day",desc:"Hands-on community service — pantry restock, to-go bags, a spring clean-up, and Adopt-a-Street in East Orange.",thrusts:[["Civic","c-civic"]],hosts:"Kenyanna Scott-Bell · Renee Richardson-Rose"},
-  {m:"MAR",num:"Reel 07",title:"Middle School Leadership Symposium",desc:"An overnight in Philadelphia — a full leadership development immersion built just for the Jr. Teens.",thrusts:[["Education","c-education"],["Social","c-social"]],hosts:"To Be Assigned"},
+  {m:"SEP",num:"Reel 01",title:"Pizza & Politics for Mid-Terms",desc:"Voter education, civic discussion, and pizza — teens explore the midterm landscape and how policy shapes their communities.",thrusts:[["Civic / Legislative","c-civic"],["Education","c-education"],["Social / Recreational","c-social"]],hosts:"Rose Registre · Tolaison Hooks"},
+  {m:"OCT",num:"Reel 02",title:"Entrepreneurship Workshop",desc:"Jr. teens brainstorm business ideas, learn startup basics, and explore where business meets technology.",thrusts:[["Education","c-education"],["Social / Recreational","c-social"]],hosts:"Rabiyya Smith · Jennifer Williams"},
+  {m:"NOV",num:"Reel 03",title:"Federal Reserve + Side Hustle & Cybersecurity",desc:"Tour the Federal Reserve, then dive into side hustles, entrepreneurship, and a cybersecurity + AI workshop with guest speakers.",thrusts:[["Education","c-education"]],hosts:"Jenelle DeCoteau · Sharmaine Lewis"},
+  {m:"DEC",num:"Reel 04",title:"Preparing for High School + Holiday Dinner",desc:"A joint session with the Senior Teens — high school readiness panel, real-talk Q&A, and a festive holiday dinner.",thrusts:[["Education","c-education"],["Social / Recreational","c-social"]],hosts:"Stacie Church · Kimberly Wright"},
+  {m:"JAN",num:"Reel 05",title:"Cards, Culture & Conversation",desc:"Cultural card games and heritage conversations paired with a hands-on financial literacy game, Cash Flow for Kids.",thrusts:[["Cultural","c-cultural"],["Education","c-education"],["Social / Recreational","c-social"]],hosts:"Tia Adams · India Sweetney"},
+  {m:"FEB",num:"Reel 06",title:"Church of Epiphany Service Day",desc:"Hands-on community service — pantry restock, to-go bags, a spring clean-up, and Adopt-a-Street in East Orange.",thrusts:[["Civic / Legislative","c-civic"]],hosts:"Kenyanna Scott-Bell · Renee Richardson-Rose"},
+  {m:"MAR",num:"Reel 07",title:"Middle School Leadership Symposium",desc:"An overnight in Philadelphia — a full leadership development immersion built just for the Jr. Teens.",thrusts:[["Education","c-education"],["Social / Recreational","c-social"]],hosts:"To Be Assigned"},
   {m:"APR",num:"Reel 08",title:"Soar with Black Aviation",desc:"In partnership with Eagle Flight — explore Black aviation pioneers, take on a flight simulator, and discover aerospace STEM careers.",thrusts:[["Cultural","c-cultural"],["Education","c-education"]],hosts:"Jamilia Aquil · Shaviece Osborne"},
-  {m:"MAY",num:"Reel 09",title:"STEM Day @ Six Flags · Science of Rollercoasters",desc:"A year-end outdoor STEM adventure — explore the physics of rollercoasters where science meets pure fun.",thrusts:[["Education","c-education"],["Health","c-health"],["Recreational","c-recreational"]],hosts:"Jennifer Dozier · Danielle King"}
+  {m:"MAY",num:"Reel 09",title:"STEM Day @ Six Flags · Science of Rollercoasters",desc:"A year-end outdoor STEM adventure — explore the physics of rollercoasters where science meets pure fun.",thrusts:[["Education","c-education"],["Health","c-health"],["Social / Recreational","c-social"]],hosts:"Jennifer Dozier · Danielle King"}
 ];
 
 const HEAD_SVG = `<svg viewBox="0 0 22 30"><path class="fill" d="M11 1.5c3 0 5.4 2.4 5.4 5.4 0 2.2-1.3 4.1-3.2 4.9 3.9.9 6.8 4.4 6.8 8.6v8.1H2v-8.1c0-4.2 2.9-7.7 6.8-8.6C6.9 11 5.6 9.1 5.6 6.9 5.6 3.9 8 1.5 11 1.5z"/></svg>`;
@@ -341,7 +350,6 @@ slidesData.forEach((s,i)=>{
     const idxInMonths = MODULES.indexOf(m); // 0-based
     const lit = idxInMonths+1;
     const chips=m.thrusts.map(t=>`<span class="chip ${t[1]}">${t[0]}</span>`).join('');
-    const links = m.links ? `<div class="m-links">${m.links.map(l=>`<a class="m-link" href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join('')}</div>` : '';
     el.innerHTML=`
       <div class="reel-num">${m.num} · ${lit} of ${MONTHS}</div>
       <div class="month-big">${m.m}</div>
@@ -350,7 +358,7 @@ slidesData.forEach((s,i)=>{
       <p class="m-desc">${m.desc}</p>
       <div class="thrusts">${chips}</div>
       <div class="hosts">Host Moms · <b>${m.hosts}</b></div>
-      ${links}
+      <div class="m-links">${LINK_BTNS}</div>
       <div class="crowd">${crowd(lit,KIDS)}</div>
       <div class="crowd-label"><b>${lit}</b> of ${MONTHS} months mapped for our <b>${KIDS}</b> teens</div>
     `;
@@ -375,6 +383,7 @@ slidesData.forEach((s,i)=>{
       <div class="fin-theme">From the GGC Training · What Every Event Must Hit</div>
       <h2 class="fin" style="font-size:clamp(1.5rem,4.5vw,2.8rem);margin-bottom:1.4rem">The <em>requirements</em>, at a glance</h2>
       <div class="req-list">${rows}</div>
+      <div class="m-links">${LINK_BTNS}</div>
       <div class="fin-note">Full interactive checklist available as a separate printable sheet</div>
     `;
   } else if(s.type==='steps'){
@@ -389,14 +398,14 @@ slidesData.forEach((s,i)=>{
         <div class="step-no">${st[0]}</div>
         <div class="step-body"><div class="step-name">${st[1]}</div><div class="step-text">${st[2]}</div></div>
       </div>`).join('');
-    const THRUSTS=[["Cultural","c-cultural"],["Education","c-education"],["Health","c-health"],["Civic","c-civic"],["Social","c-social"],["Recreational","c-recreational"]];
+    const THRUSTS=[["Education","c-education"],["Cultural","c-cultural"],["Civic / Legislative","c-civic"],["Social / Recreational","c-social"],["Health","c-health"]];
     const thrustChips=THRUSTS.map(t=>`<span class="chip ${t[1]}">${t[0]}</span>`).join('');
     el.innerHTML=`
       <div class="fin-theme">Planning a Strong Event · The 4 Steps</div>
       <h2 class="fin" style="font-size:clamp(1.5rem,4.5vw,2.8rem);margin-bottom:1.4rem">Four steps to an <em>exquisite</em> event</h2>
       <div class="steps-grid">${stepCards}</div>
       <div class="thrust-band">
-        <div class="tb-label">Every event hits one of our six thrusts</div>
+        <div class="tb-label">Every event hits one of our five national thrusts</div>
         <div class="thrusts">${thrustChips}</div>
       </div>
       <div class="fin-note">Jr. Teens meet the <b>4th weekend</b> of every month · Celebrating 20 Years Strong &amp; the Promise Ahead</div>
@@ -420,6 +429,7 @@ slidesData.forEach((s,i)=>{
         </div>
       </div>
       <div class="crowd" style="margin-top:2rem">${crowd(KIDS,KIDS)}</div>
+      <div class="m-links" style="margin-top:1.4rem">${LINK_BTNS}</div>
       <div class="fin-note">The Exquisite Essex-Hudson Experience · Let's make it unforgettable</div>
     `;
   }
