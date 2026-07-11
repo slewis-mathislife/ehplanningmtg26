@@ -107,6 +107,13 @@
   .c-health{color:#8fd89a;border-color:rgba(143,216,154,.5)}
   .hosts{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mist);font-weight:300}
   .hosts b{color:var(--pink-soft);font-weight:500}
+  .m-links{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:1rem}
+  .m-link{
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;text-decoration:none;
+    padding:.5rem 1.1rem;border-radius:100px;border:1px solid var(--blue-bright);color:var(--blue-bright);
+    transition:background .25s,color .25s,transform .25s;
+  }
+  .m-link:hover{background:var(--blue-bright);color:var(--navy);transform:translateY(-2px)}
 
   /* ---- SILHOUETTES ---- */
   .crowd{display:flex;flex-wrap:wrap;gap:.55rem .5rem;justify-content:center;max-width:640px;margin:1.4rem auto 0}
@@ -123,7 +130,45 @@
   .crowd-label{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mist);font-weight:300;margin-top:1rem}
   .crowd-label b{color:var(--pink-soft);font-weight:600}
 
-  /* ---- FINALE ---- */
+  /* ---- MOTHERS ---- */
+  .mom-wrap{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;max-width:680px;margin:0 auto}
+  .mom-chip{
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(.85rem,2.2vw,1.15rem);
+    padding:.55rem 1.15rem;border-radius:100px;
+    border:1px solid rgba(249,168,205,.4);
+    background:linear-gradient(100deg,rgba(240,107,168,.12),rgba(43,108,212,.12));
+    color:var(--paper);transition:transform .3s ease,border-color .3s ease;
+  }
+  .mom-chip:hover{transform:translateY(-3px);border-color:var(--blue-bright)}
+
+  /* ---- 4 STEPS (finale) ---- */
+  .steps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem;max-width:760px;margin:0 auto 1.6rem}
+  .step-card{
+    display:flex;gap:.9rem;text-align:left;padding:1.1rem 1.2rem;border-radius:14px;
+    border:1px solid rgba(253,246,251,.18);background:rgba(43,108,212,.08);
+  }
+  .step-no{
+    font-family:'Fraunces',serif;font-style:italic;font-size:1.7rem;line-height:1;
+    background:linear-gradient(120deg,var(--pink-soft),var(--blue-bright));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0;
+  }
+  .step-name{font-family:'Fraunces',serif;font-style:italic;font-size:1.2rem;color:var(--paper);margin-bottom:.25rem}
+  .step-text{font-size:.76rem;font-weight:300;line-height:1.5;color:var(--mist)}
+  .thrust-band{margin:0 auto 1.4rem}
+  .tb-label{font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mist);font-weight:300;margin-bottom:.8rem}
+
+  /* ---- CHECKLIST SLIDE ---- */
+  .req-list{display:flex;flex-direction:column;gap:.5rem;max-width:680px;margin:0 auto 1.4rem;width:100%}
+  .req-row{display:flex;align-items:center;gap:.9rem;text-align:left;padding:.65rem 1rem;border-radius:12px;
+    border:1px solid rgba(253,246,251,.16);background:rgba(43,108,212,.08)}
+  .req-check{flex-shrink:0;width:26px;height:26px;border-radius:50%;
+    background:linear-gradient(120deg,var(--pink),var(--blue-bright));display:grid;place-items:center}
+  .req-check svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .req-txt{flex:1;font-size:clamp(.8rem,2vw,.96rem);font-weight:300;line-height:1.4;color:var(--paper)}
+  .req-txt b{font-weight:600;color:var(--pink-soft)}
+  .req-when{flex-shrink:0;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-bright);
+    font-weight:500;text-align:right;max-width:120px;line-height:1.3}
+
   .fin-theme{font-family:'Fraunces',serif;font-style:italic;color:var(--gold);font-size:clamp(.85rem,2.3vw,1.1rem);margin-bottom:1.3rem;max-width:28ch;line-height:1.4}
   h2.fin{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(1.8rem,6vw,4rem);line-height:1.02;max-width:20ch}
   h2.fin em{background:linear-gradient(100deg,var(--pink-soft),var(--blue-bright));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -180,6 +225,8 @@
     .navbtn span.lbl{display:none}
     .deliverables{flex-direction:column;align-items:center}
     .counter{display:none}
+    .steps-grid{grid-template-columns:1fr}
+    .req-when{display:none}
   }
   @media(prefers-reduced-motion:reduce){
     .strip{transition:transform .2s linear}
@@ -227,7 +274,7 @@ const MOTHER_NAMES = ["Mother Tia","CP Jamilia","RS Stacie","Mother Jenelle","Mo
 const MODULES = [
   {m:"SEP",num:"Reel 01",title:"Pizza & Politics for Mid-Terms",desc:"Voter education, civic discussion, and pizza — teens explore the midterm landscape and how policy shapes their communities.",thrusts:[["Civic","c-civic"],["Education","c-education"],["Social","c-social"]],hosts:"Rose Registre · Tolaison Hooks"},
   {m:"OCT",num:"Reel 02",title:"Entrepreneurship Workshop",desc:"Jr. teens brainstorm business ideas, learn startup basics, and explore where business meets technology.",thrusts:[["Education","c-education"],["Social","c-social"]],hosts:"Rabiyya Smith · Jennifer Williams"},
-  {m:"NOV",num:"Reel 03",title:"Federal Reserve + Side Hustle & Cybersecurity",desc:"Tour the Federal Reserve, then dive into side hustles, entrepreneurship, and a cybersecurity + AI workshop with guest speakers.",thrusts:[["Education","c-education"]],hosts:"Jenelle DeCoteau · Sharmaine Lewis"},
+  {m:"NOV",num:"Reel 03",title:"Federal Reserve + Side Hustle & Cybersecurity",desc:"Tour the Federal Reserve, then dive into side hustles, entrepreneurship, and a cybersecurity + AI workshop with guest speakers.",thrusts:[["Education","c-education"]],hosts:"Jenelle DeCoteau · Sharmaine Lewis",links:[["Jr. Teens Checklist","jr-teens-requirements-checklist.html"],["Program Workbook","https://docs.google.com/spreadsheets/d/19R0Gil0VWE6B1nHYxMZTtMnz9W1Ne9SEUN-Pnsas-Ls/edit?gid=1513547711#gid=1513547711"]]},
   {m:"DEC",num:"Reel 04",title:"Preparing for High School + Holiday Dinner",desc:"A joint session with the Senior Teens — high school readiness panel, real-talk Q&A, and a festive holiday dinner.",thrusts:[["Education","c-education"],["Social","c-social"],["Recreational","c-recreational"]],hosts:"Stacie Church · Kimberly Wright"},
   {m:"JAN",num:"Reel 05",title:"Cards, Culture & Conversation",desc:"Cultural card games and heritage conversations paired with a hands-on financial literacy game, Cash Flow for Kids.",thrusts:[["Cultural","c-cultural"],["Education","c-education"],["Recreational","c-recreational"]],hosts:"Tia Adams · India Sweetney"},
   {m:"FEB",num:"Reel 06",title:"Church of Epiphany Service Day",desc:"Hands-on community service — pantry restock, to-go bags, a spring clean-up, and Adopt-a-Street in East Orange.",thrusts:[["Civic","c-civic"]],hosts:"Kenyanna Scott-Bell · Renee Richardson-Rose"},
@@ -252,9 +299,15 @@ const slidesData = [];
 
 // title slide
 slidesData.push({type:'title'});
+// mothers slide
+slidesData.push({type:'mothers'});
 // module slides
 MODULES.forEach(m=>slidesData.push({type:'module',data:m}));
-// finale
+// four steps to an exquisite event
+slidesData.push({type:'steps'});
+// requirements checklist
+slidesData.push({type:'checklist'});
+// finale — the two deliverables
 slidesData.push({type:'finale'});
 
 const TOTAL = slidesData.length;
@@ -275,11 +328,20 @@ slidesData.forEach((s,i)=>{
       <div class="crowd">${crowd(0,KIDS)}</div>
       <div class="crowd-label"><b>${FAMILIES}</b> families · <b>${KIDS}</b> Junior Teens · one exquisite year</div>
     `;
+  } else if(s.type==='mothers'){
+    const momChips = MOTHER_NAMES.map(n=>`<span class="mom-chip">${n}</span>`).join('');
+    el.innerHTML=`
+      <div class="eyebrow">The Mothers Behind the Magic</div>
+      <h2 class="fin" style="margin-bottom:.6rem">Our <em>Junior Teens</em> Mothers</h2>
+      <p class="m-desc" style="margin-bottom:1.8rem">Sixteen families, one village — the mothers making this exquisite year happen.</p>
+      <div class="mom-wrap">${momChips}</div>
+    `;
   } else if(s.type==='module'){
     const m=s.data;
     const idxInMonths = MODULES.indexOf(m); // 0-based
     const lit = idxInMonths+1;
     const chips=m.thrusts.map(t=>`<span class="chip ${t[1]}">${t[0]}</span>`).join('');
+    const links = m.links ? `<div class="m-links">${m.links.map(l=>`<a class="m-link" href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join('')}</div>` : '';
     el.innerHTML=`
       <div class="reel-num">${m.num} · ${lit} of ${MONTHS}</div>
       <div class="month-big">${m.m}</div>
@@ -288,29 +350,77 @@ slidesData.forEach((s,i)=>{
       <p class="m-desc">${m.desc}</p>
       <div class="thrusts">${chips}</div>
       <div class="hosts">Host Moms · <b>${m.hosts}</b></div>
+      ${links}
       <div class="crowd">${crowd(lit,KIDS)}</div>
       <div class="crowd-label"><b>${lit}</b> of ${MONTHS} months mapped for our <b>${KIDS}</b> teens</div>
     `;
+  } else if(s.type==='checklist'){
+    const reqs=[
+      ["One activity in <b>each of the 5 thrusts</b>","Governance minimum"],
+      ["<b>5+ activities</b> for the year, 50%+ attendance","5-Star standard"],
+      ["A <b>community service</b> activity","5-Star standard"],
+      ["<b>Curriculum</b> layered in &amp; tracked","4 Financial + 4 Leadership"],
+      ["<b>Liability &amp; Medical Release</b> forms complete","Before hosting"],
+      ["Evite ~6 weeks out · cc PD &amp; FinSec","Every invitation"],
+      ["<b>Full accountability</b> until every child is picked up","Event day"],
+      ["Evaluation + photos submitted after","5, 7 &amp; 14-day deadlines"]
+    ];
+    const rows=reqs.map(r=>`
+      <div class="req-row">
+        <span class="req-check"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>
+        <span class="req-txt">${r[0]}</span>
+        <span class="req-when">${r[1]}</span>
+      </div>`).join('');
+    el.innerHTML=`
+      <div class="fin-theme">From the GGC Training · What Every Event Must Hit</div>
+      <h2 class="fin" style="font-size:clamp(1.5rem,4.5vw,2.8rem);margin-bottom:1.4rem">The <em>requirements</em>, at a glance</h2>
+      <div class="req-list">${rows}</div>
+      <div class="fin-note">Full interactive checklist available as a separate printable sheet</div>
+    `;
+  } else if(s.type==='steps'){
+    const steps=[
+      ["01","Plan","3–5 months out — finalize details with your co-host, divide roles, consult Digital Cheetah, complete your Activity Planning Sheet."],
+      ["02","Execute","6–8 weeks before — send your Evite with full details, copy PD, Financial Secretary &amp; President, send reminders."],
+      ["03","Host","Event day — take attendance, engage every family, capture photos, and have fun!"],
+      ["04","Follow Up","Within 1 month — submit reimbursements, note what worked, upload final attendance count."]
+    ];
+    const stepCards=steps.map(st=>`
+      <div class="step-card">
+        <div class="step-no">${st[0]}</div>
+        <div class="step-body"><div class="step-name">${st[1]}</div><div class="step-text">${st[2]}</div></div>
+      </div>`).join('');
+    const THRUSTS=[["Cultural","c-cultural"],["Education","c-education"],["Health","c-health"],["Civic","c-civic"],["Social","c-social"],["Recreational","c-recreational"]];
+    const thrustChips=THRUSTS.map(t=>`<span class="chip ${t[1]}">${t[0]}</span>`).join('');
+    el.innerHTML=`
+      <div class="fin-theme">Planning a Strong Event · The 4 Steps</div>
+      <h2 class="fin" style="font-size:clamp(1.5rem,4.5vw,2.8rem);margin-bottom:1.4rem">Four steps to an <em>exquisite</em> event</h2>
+      <div class="steps-grid">${stepCards}</div>
+      <div class="thrust-band">
+        <div class="tb-label">Every event hits one of our six thrusts</div>
+        <div class="thrusts">${thrustChips}</div>
+      </div>
+      <div class="fin-note">Jr. Teens meet the <b>4th weekend</b> of every month · Celebrating 20 Years Strong &amp; the Promise Ahead</div>
+    `;
   } else {
     el.innerHTML=`
-      <div class="fin-theme">Celebrating 20 Years Strong &amp; the Promise Ahead</div>
-      <h2 class="fin">Twelve months. One <em>exquisite</em> grade group.</h2>
+      <div class="fin-theme">Before You Leave Today</div>
+      <h2 class="fin">Two things make it <em>official</em>.</h2>
       <div class="deliverables">
         <div class="deliver">
           <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
-          <div class="step">Before you leave · 01</div>
-          <div class="big">Activity Planning Sheet</div>
-          <div class="small">Every host mom completes her form on Tab 3 — all fields done, thrust &amp; module locked in.</div>
+          <div class="step">Deliverable · 01</div>
+          <div class="big">Save-the-Date Evite</div>
+          <div class="small">Each host mom creates &amp; sends her save-the-date Evite — date, time, cost &amp; details, copying PD, Financial Secretary &amp; President.</div>
         </div>
         <div class="deliver">
           <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
-          <div class="step">Before you leave · 02</div>
-          <div class="big">Evite Sent</div>
-          <div class="small">Send your Evite with date, time, cost &amp; details — copy the PD, Financial Secretary &amp; President.</div>
+          <div class="step">Deliverable · 02</div>
+          <div class="big">Activity Planning Sheet</div>
+          <div class="small">Every host mom completes her Activity Planning Sheet — all fields done, thrust &amp; curriculum module locked in.</div>
         </div>
       </div>
       <div class="crowd" style="margin-top:2rem">${crowd(KIDS,KIDS)}</div>
-      <div class="fin-note">Jr. Teens meet the <b>4th weekend</b> of every month · Let's make it unforgettable</div>
+      <div class="fin-note">The Exquisite Essex-Hudson Experience · Let's make it unforgettable</div>
     `;
   }
   film.appendChild(el);
