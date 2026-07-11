@@ -109,12 +109,17 @@
   .hosts b{color:var(--pink-soft);font-weight:500}
 
   /* ---- SILHOUETTES ---- */
-  .crowd{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;max-width:520px;margin:1.4rem auto 0}
-  .head{width:22px;height:30px;transition:transform .4s ease}
-  .head svg{width:100%;height:100%;display:block}
+  .crowd{display:flex;flex-wrap:wrap;gap:.55rem .5rem;justify-content:center;max-width:640px;margin:1.4rem auto 0}
+  .head{display:flex;flex-direction:column;align-items:center;gap:.2rem;width:52px;transition:transform .4s ease}
+  .head svg{width:20px;height:27px;display:block}
   .head .fill{fill:rgba(253,246,251,.14);transition:fill .5s ease}
   .head.lit .fill{fill:url(#hg)}
   .head.lit{transform:translateY(-3px)}
+  .head .hname{
+    font-size:.5rem;letter-spacing:.04em;text-transform:uppercase;font-weight:400;
+    color:rgba(253,246,251,.3);transition:color .5s ease;line-height:1;white-space:nowrap;
+  }
+  .head.lit .hname{color:var(--pink-soft)}
   .crowd-label{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mist);font-weight:300;margin-top:1rem}
   .crowd-label b{color:var(--pink-soft);font-weight:600}
 
@@ -215,6 +220,10 @@
 const KIDS = 17;
 const FAMILIES = 16;
 
+const KID_NAMES = ["Alexandria","Ziya","Kennedy","Madison","Noah","Sasha","Elle","Dorian","James","Elijah","Antonio","Michael","Maya","Norah","Grayson","Sophia","Emerson"];
+
+const MOTHER_NAMES = ["Mother Tia","CP Jamilia","RS Stacie","Mother Jenelle","Mother Jennifer","Mother Tolaison","Mother Danielle","Mother Sharmaine","Mother Rose","Mother Renee","Mother Kenyanna","Mother Rabiyya","Mother India","Mother Jennifer W.","Mother Kimberly"];
+
 const MODULES = [
   {m:"SEP",num:"Reel 01",title:"Pizza & Politics for Mid-Terms",desc:"Voter education, civic discussion, and pizza — teens explore the midterm landscape and how policy shapes their communities.",thrusts:[["Civic","c-civic"],["Education","c-education"],["Social","c-social"]],hosts:"Rose Registre · Tolaison Hooks"},
   {m:"OCT",num:"Reel 02",title:"Entrepreneurship Workshop",desc:"Jr. teens brainstorm business ideas, learn startup basics, and explore where business meets technology.",thrusts:[["Education","c-education"],["Social","c-social"]],hosts:"Rabiyya Smith · Jennifer Williams"},
@@ -224,7 +233,7 @@ const MODULES = [
   {m:"FEB",num:"Reel 06",title:"Church of Epiphany Service Day",desc:"Hands-on community service — pantry restock, to-go bags, a spring clean-up, and Adopt-a-Street in East Orange.",thrusts:[["Civic","c-civic"]],hosts:"Kenyanna Scott-Bell · Renee Richardson-Rose"},
   {m:"MAR",num:"Reel 07",title:"Middle School Leadership Symposium",desc:"An overnight in Philadelphia — a full leadership development immersion built just for the Jr. Teens.",thrusts:[["Education","c-education"],["Social","c-social"]],hosts:"To Be Assigned"},
   {m:"APR",num:"Reel 08",title:"Soar with Black Aviation",desc:"In partnership with Eagle Flight — explore Black aviation pioneers, take on a flight simulator, and discover aerospace STEM careers.",thrusts:[["Cultural","c-cultural"],["Education","c-education"]],hosts:"Jamilia Aquil · Shaviece Osborne"},
-  {m:"MAY",num:"Reel 09",title:"Tenement Museum · Reclaiming Black Spaces",desc:"A year-end cultural excursion — a building or walking tour to reflect, celebrate, and connect with history.",thrusts:[["Cultural","c-cultural"]],hosts:"Jennifer Dozier · Danielle King"}
+  {m:"MAY",num:"Reel 09",title:"STEM Day @ Six Flags · Science of Rollercoasters",desc:"A year-end outdoor STEM adventure — explore the physics of rollercoasters where science meets pure fun.",thrusts:[["Education","c-education"],["Health","c-health"],["Recreational","c-recreational"]],hosts:"Jennifer Dozier · Danielle King"}
 ];
 
 const HEAD_SVG = `<svg viewBox="0 0 22 30"><path class="fill" d="M11 1.5c3 0 5.4 2.4 5.4 5.4 0 2.2-1.3 4.1-3.2 4.9 3.9.9 6.8 4.4 6.8 8.6v8.1H2v-8.1c0-4.2 2.9-7.7 6.8-8.6C6.9 11 5.6 9.1 5.6 6.9 5.6 3.9 8 1.5 11 1.5z"/></svg>`;
@@ -232,7 +241,8 @@ const HEAD_SVG = `<svg viewBox="0 0 22 30"><path class="fill" d="M11 1.5c3 0 5.4
 function crowd(litCount, total){
   let heads = '';
   for(let i=0;i<total;i++){
-    heads += `<span class="head${i<litCount?' lit':''}">${HEAD_SVG}</span>`;
+    const nm = KID_NAMES[i] || '';
+    heads += `<span class="head${i<litCount?' lit':''}" title="${nm}">${HEAD_SVG}<span class="hname">${nm}</span></span>`;
   }
   return heads;
 }
